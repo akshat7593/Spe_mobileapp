@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 if(email_test == true){
                     if(pass_test == true){
                         if(repass_test == true) {
-                            Intent home = new Intent(MainActivity.this, Home.class);
+                            Intent home = new Intent(MainActivity.this,Home.class);
                             home.putExtra("rollno",rollno.getText().toString());
                             startActivity(home);
                         }
