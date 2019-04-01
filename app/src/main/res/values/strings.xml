@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Spe_mobileapp</string>
+    <string name="email">Email</string>
+    <string name="rollno">Rollno</string>
+    <string name="pass">Password</string>
+    <string name="repass">Re-Password</string>
+    <string name="Register">Register</string>
+    <string name="emailerror">Enter a valid email</string>
+    <string name="Welcome">Welcome</string>
+    <string name="workerid">worker_id</string>
+    <string name="time">Timeeeeeeeeee</string>
+    <string name="roomno">roomno</string>
+    <string name="submit">submit</string>
 </resources>
