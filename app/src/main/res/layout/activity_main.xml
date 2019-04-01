@@ -22,6 +22,13 @@
         android:layout_marginTop="24dp"/>
 
     <EditText
+        android:id="@+id/room_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/roomno"
+        android:layout_marginTop="24dp"/>
+
+    <EditText
         android:id="@+id/pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

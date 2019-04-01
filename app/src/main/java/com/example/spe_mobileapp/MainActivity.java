@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 
 public class MainActivity extends AppCompatActivity {
-    EditText email,rollno,password,repassword;
+    EditText email,rollno,password,repassword,roomno;
     Button register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText)findViewById(R.id.pass);
         repassword = (EditText)findViewById(R.id.repass);
         register = (Button)findViewById(R.id.register);
+        roomno = (EditText)findViewById(R.id.room_number);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
