@@ -31,9 +31,10 @@ public class MainActivity extends AppCompatActivity {
                 if(email_test == true){
                     if(pass_test == true){
                         if(repass_test == true) {
-                            Intent home = new Intent(MainActivity.this,Home.class);
-                            home.putExtra("rollno",rollno.getText().toString());
-                            startActivity(home);
+//                            Intent home = new Intent(MainActivity.this, Home.class);
+//                            home.putExtra("rollno",rollno.getText().toString());
+//                            startActivity(home);
+                            System.out.println("check");
                         }
                         else
                             System.out.println("password_mismatch");
