@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <EditText
+        android:id="@+id/login_roll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/rollno"
+        android:layout_marginTop="24dp"/>
+
+    <EditText
+        android:id="@+id/login_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/pass"
+        android:layout_marginTop="24dp"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/data_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/login"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="124dp"/>
+
+</LinearLayout>
