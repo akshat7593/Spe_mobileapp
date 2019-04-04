@@ -13,12 +13,6 @@
         android:layout_height="wrap_content"
         android:hint="@string/workerid"/>
 
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/time"
-        android:layout_marginTop="24dp"/>
 
     <EditText
         android:id="@+id/Student_id"
@@ -34,14 +28,8 @@
         android:hint="@string/roomno"
         android:layout_marginTop="24dp"/>
 
-    <Button
-        android:id="@+id/data_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/submit"
-        android:layout_marginTop="24dp"
-        android:layout_gravity="center"/>
-    
+//ELK tools
+
     <RadioGroup
         android:id="@+id/radio_choice"
         android:layout_width="match_parent"
@@ -65,8 +53,45 @@
             android:hint="Mop" />
     </RadioGroup>
 
-   
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="12dp"
+            android:hint="RATING:"
+            android:textSize="32dp"
+            android:textStyle="bold"/>
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rating_bar"
+            android:numStars="5"
+            android:stepSize="1.0"
+            android:paddingLeft="2dp"/>
+
+    </LinearLayout>
 
 
+
+    <Button
+        android:id="@+id/data_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/submit"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="LOGOUT"
+        android:layout_marginTop="96dp"
+        android:layout_gravity="right"/>
 
 </LinearLayout>
