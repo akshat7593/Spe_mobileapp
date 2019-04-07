@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:paddingEnd="16dp"
             android:hint="Sweep"
+            android:checked="true"
             android:paddingRight="16dp" />
 
         <RadioButton
@@ -72,6 +73,7 @@
             android:id="@+id/rating_bar"
             android:numStars="5"
             android:stepSize="1.0"
+            android:rating="5.0"
             android:paddingLeft="2dp"/>
 
     </LinearLayout>

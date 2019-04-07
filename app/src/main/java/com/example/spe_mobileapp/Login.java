@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,13 +32,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import okhttp3.OkHttpClient;
 
 public class Login extends Activity {
     EditText login_roll, login_pass;
     Button  login_btn;
-    SharedPreferences sp;
+    //SharedPreferences sp;
+
     public static final String login_flag = "";
 
     String url = "http://172.16.132.137:4000/login";
@@ -47,23 +53,36 @@ public class Login extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
+        SharedPreferences mPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        SharedPreferences.Editor mEdit = mPreferences.edit();
+        System.out.println("test11"+mPreferences);
         login_roll = (EditText) findViewById(R.id.login_roll);
         login_pass = (EditText) findViewById(R.id.login_pass);
         login_btn = (Button)findViewById(R.id.data_login);
-        sp = getSharedPreferences("login",0);
+        //sp = getSharedPreferences("login",0);
         //sp.Editor editor = sp.edit();
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 System.out.println(login_roll.getText().toString());
+
+                //Network Test
+                //new NetworkTask(getBaseContext(), login_roll.getText().toString(), login_pass.getText().toString()).execute();
+
+
+                // Ends
+
                 if((login_roll.getText().toString()).equals("12345"))
                 {
                     if((login_pass.getText().toString()).equals("aks253854")){
-                        sp.edit().putString(login_flag,"hi").apply();
+                        //sp.edit().putString(login_flag,"hi").apply();
+                        //mPreferences.edit().putBoolean("login_flag",true);
+                        mEdit.putBoolean("login_flag",true);
+                        mEdit.apply();
                         Intent home = new Intent(Login.this, Home.class);
                         home.putExtra("login_roll",login_roll.getText().toString());
+                        home.putExtra("room_no","123");
                         startActivity(home);
                     }
                     else{
