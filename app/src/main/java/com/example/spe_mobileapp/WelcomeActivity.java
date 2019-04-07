@@ -18,10 +18,10 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.launch);
 
         SharedPreferences mPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        System.out.println("test"+mPreferences);
+        System.out.println("test" + mPreferences);
         login = findViewById(R.id.login_link);
         signup = findViewById(R.id.signup_link);
-        System.out.println("check"+mPreferences.getAll());
+        System.out.println("check" + mPreferences.getAll());
         if (mPreferences != null && mPreferences.getBoolean("login_flag", false)) {
             startActivity(new Intent(WelcomeActivity.this, Home.class));
         }

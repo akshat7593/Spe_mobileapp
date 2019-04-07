@@ -8,13 +8,12 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.io.IOException;
+import org.json.JSONObject;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okio.BufferedSink;
 
 public class NetworkTask extends AsyncTask<Void, Void, Void> {
 
@@ -22,11 +21,15 @@ public class NetworkTask extends AsyncTask<Void, Void, Void> {
     private String mPassword, mRollNumber;
     private Response mResponse;
 
+
+
     NetworkTask(Context mContext, String mRollNumber, String mPassword) {
         this.mContext = mContext;
         this.mPassword = mPassword;
         this.mRollNumber = mRollNumber;
     }
+
+
 
     @Override
     protected void onPreExecute() {
@@ -51,6 +54,7 @@ public class NetworkTask extends AsyncTask<Void, Void, Void> {
         } catch (Exception e) {
             e.printStackTrace();
             Log.d("NetworkTask", "Error:: " + e.getMessage());
+            //Toast.makeText(mContext, "Internet connection error", Toast.LENGTH_SHORT).show();
         }
         return null;
     }
@@ -58,16 +62,27 @@ public class NetworkTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         try {
+            System.out.println("checkkssssss");
             String mResponseBody = mResponse.body().string();
+            System.out.println("Response"+mResponseBody);
+            JSONObject jsonObject=new JSONObject(mResponseBody);
+            String msg_valid=jsonObject.getString("msg");
+            String room_no=jsonObject.getString("room_no");
             Log.d("NetworkTask", mResponseBody);
-            if (mResponse != null && mResponseBody.equals("Valid")) {
-//                SharedPreferences mPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
-//                SharedPreferences.Editor mEdit = mPreferences.edit();
-//                mEdit.putBoolean("USER_LOGGED_IN", true);
-//                mEdit.apply();
+            if (mResponse != null && msg_valid.equals("Valid")) {
+
+                //Shared preference
+                SharedPreferences mPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+                SharedPreferences.Editor mEdit = mPreferences.edit();
+                mEdit.putBoolean("login_flag", true);
+                mEdit.putString("login_roll",mRollNumber);
+                mEdit.putString("room_no",room_no);
+                mEdit.apply();
+                //ends
 
                 Intent homeActivity = new Intent(mContext, Home.class);
-                homeActivity.putExtra("login_roll", mRollNumber);
+                //homeActivity.putExtra("login_roll", mRollNumber);
+                //homeActivity.putExtra("room_no",room_no);
                 homeActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(homeActivity);
             } else {

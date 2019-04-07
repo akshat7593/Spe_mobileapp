@@ -1,6 +1,7 @@
 package com.example.spe_mobileapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -68,7 +69,9 @@ public class SignUpTask extends AsyncTask<Void, Void, Void> {
 //                SContext.startActivity(homeActivity);
                 System.out.println("Email or rollno repeated");
             } else if (mResponse != null && mResponseBody.equals("2")) {
-                Toast.makeText(SContext, "Good", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SContext, "Succesfully registered", Toast.LENGTH_SHORT).show();
+                Intent loginActivity = new Intent(SContext, Login.class);
+                SContext.startActivity(loginActivity);
             } else
                 System.out.println("some error please try again or later");
         } catch (Exception e) {

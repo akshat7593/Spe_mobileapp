@@ -9,11 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.RatingBar;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class Home extends Activity {
 
@@ -24,7 +25,7 @@ public class Home extends Activity {
     Button submit;
     Button logout;
     //RadioGroup flag;
-    RadioButton sweep, mop,selected;
+    RadioButton sweep, mop, selected;
     //SharedPreferences sp;
     //public static final String login_flag = "";
 
@@ -32,6 +33,9 @@ public class Home extends Activity {
     int sweep_mop;
     float rates;
     //ends
+    String roll_pattern = "^(MS|MT|IMT|PHD|DT)+20+[0-9]{5}$";
+    String room_pattern = "^[1-7][0-9][0-9]$";
+    String work_pattern = "^[1-9][0-9]{4}$";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +62,16 @@ public class Home extends Activity {
         //time
         currenttime = Calendar.getInstance().getTime();
         System.out.println(currenttime);
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        System.out.println(date);
         //ends
 
         //Initializing front end
         Intent home = getIntent();
-        String roll_no = home.getStringExtra("login_roll");
-        String room_no = home.getStringExtra("room_no");
+        //String roll_no = home.getStringExtra("login_roll");
+        //String room_no = home.getStringExtra("room_no");
+        String roll_no=mPreferences.getString("login_roll",null);
+        String room_no=mPreferences.getString("room_no",null);
         //System.out.println(room_no);
         rollno.setText(roll_no);
         roomno.setText(room_no);
@@ -75,43 +83,40 @@ public class Home extends Activity {
             public void onClick(View v) {
 
                 //Storing in string
-                String work_id,fin_roll,fin_room;
-                work_id=workerid.getText().toString();
-                fin_roll=rollno.getText().toString();
-                fin_room=roomno.getText().toString();
+                String work_id, fin_roll, fin_room;
+                work_id = workerid.getText().toString();
+                fin_roll = rollno.getText().toString();
+                fin_room = roomno.getText().toString();
                 //ends
 
                 //validation
-                boolean worker_id_test,roll_test, room_test;
-                worker_id_test=match_work_id(work_id);
-                roll_test=match_roll(fin_roll);
-                room_test=match_room(fin_room);
+                boolean worker_id_test, roll_test, room_test;
+                worker_id_test = match_work_id(work_id);
+                roll_test = match_roll(fin_roll);
+                room_test = match_room(fin_room);
 
                 //set value of flags
-                if(sweep.isChecked())
-                    sweep_mop=0;
+                if (sweep.isChecked())
+                    sweep_mop = 0;
                 else
-                    sweep_mop=1;
-                rates=rating.getRating();
+                    sweep_mop = 1;
+                rates = rating.getRating();
 
 
                 //ends
 
-                if(worker_id_test==true){
-                    if(roll_test==true){
-                        if(room_test==true){
+                if (worker_id_test == true) {
+                    if (roll_test == true) {
+                        if (room_test == true) {
                             //pass();
                             System.out.println("all valid");
-                            new DataEntryTask(getBaseContext(), work_id,fin_roll,fin_room,sweep_mop,rates).execute();
+                            new DataEntryTask(getBaseContext(), work_id, fin_roll, fin_room, sweep_mop, rates,date,currenttime).execute();
 
-                        }
-                        else
+                        } else
                             roomno.setError("Invalid roomno");
-                    }
-                    else
+                    } else
                         rollno.setError("Invalid rollno");
-                }
-                else
+                } else
                     workerid.setError("Invalid worker id");
 
                 //ends
@@ -146,24 +151,24 @@ public class Home extends Activity {
             }
         });
     }
-    String roll_pattern = "^(MS|MT|IMT|PHD|DT)+20+[0-9]{5}$";
-    String room_pattern = "^[1-7][0-9][0-9]$";
-    String work_pattern = "^[1-9][0-9]{4}$";
-    public Boolean match_roll(String roll_no){
-        if(roll_no.matches(roll_pattern))
+
+    public Boolean match_roll(String roll_no) {
+        if (roll_no.matches(roll_pattern))
             return true;
         else
             return false;
 
     }
-    public Boolean match_room(String room_no){
-        if(room_no.matches(room_pattern))
+
+    public Boolean match_room(String room_no) {
+        if (room_no.matches(room_pattern))
             return true;
         else
             return false;
     }
-    public Boolean match_work_id(String work_id){
-        if(work_id.matches(work_pattern))
+
+    public Boolean match_work_id(String work_id) {
+        if (work_id.matches(work_pattern))
             return true;
         else
             return false;
