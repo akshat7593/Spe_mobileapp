@@ -2,9 +2,12 @@ package com.example.spe_mobileapp;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,7 +39,13 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //                return false;
 //            }});
-
+        repassword.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                register.performClick();
+                return true;
+            }
+            return false;
+        });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,24 +56,42 @@ public class MainActivity extends AppCompatActivity {
                 repass_test = match_repass(password.getText().toString(), repassword.getText().toString());
                 roll_test = match_roll(rollno.getText().toString());
                 room_test = match_room(roomno.getText().toString());
-                if (email_test == true) {
-                    if (roll_test == true) {
-                        if (room_test == true) {
-                            if (pass_test == true) {
-                                if (repass_test == true) {
-                                    System.out.println("All Valid");
-                                    new SignUpTask(getBaseContext(), email.getText().toString().trim(), rollno.getText().toString(), roomno.getText().toString(), password.getText().toString()).execute();
+                if(email_test==true&&roll_test==true&&room_test==true&&pass_test==true&&repass_test==true){
+                        System.out.println("All Valid");
+                        new SignUpTask(getBaseContext(), email.getText().toString().trim(), rollno.getText().toString(), roomno.getText().toString(), password.getText().toString()).execute();
 
-                                } else
-                                    repassword.setError("Password Doesn't Matches");
-                            } else
-                                password.setError("Not Valid Password");
-                        } else
-                            roomno.setError("Incorrect Room Number");
-                    } else
+                }
+                else{
+                    if(email_test==false)
+                        email.setError("Incorrect Email");
+                    if(roll_test==false)
                         rollno.setError("Incorrect RollNumber");
-                } else
-                    email.setError("Incorrect Email");
+                    if(room_test==false)
+                        roomno.setError("Incorrect Room Number");
+                    if(pass_test==false)
+                        password.setError("Not Valid Password");
+                    if(repass_test==false)
+                        repassword.setError("Password Doesn't Matches");
+
+                }
+//                if (email_test == true) {
+//                    if (roll_test == true) {
+//                        if (room_test == true) {
+//                            if (pass_test == true) {
+//                                if (repass_test == true) {
+//                                    System.out.println("All Valid");
+//                                    new SignUpTask(getBaseContext(), email.getText().toString().trim(), rollno.getText().toString(), roomno.getText().toString(), password.getText().toString()).execute();
+//
+//                                } else
+//                                    repassword.setError("Password Doesn't Matches");
+//                            } else
+//                                password.setError("Not Valid Password");
+//                        } else
+//                            roomno.setError("Incorrect Room Number");
+//                    } else
+//                        rollno.setError("Incorrect RollNumber");
+//                } else
+//                    email.setError("Incorrect Email");
 
             }
         });

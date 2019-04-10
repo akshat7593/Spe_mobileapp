@@ -70,8 +70,8 @@ public class Home extends Activity {
         Intent home = getIntent();
         //String roll_no = home.getStringExtra("login_roll");
         //String room_no = home.getStringExtra("room_no");
-        String roll_no=mPreferences.getString("login_roll",null);
-        String room_no=mPreferences.getString("room_no",null);
+        String roll_no = mPreferences.getString("login_roll", null);
+        String room_no = mPreferences.getString("room_no", null);
         //System.out.println(room_no);
         rollno.setText(roll_no);
         roomno.setText(room_no);
@@ -105,19 +105,19 @@ public class Home extends Activity {
 
                 //ends
 
-                if (worker_id_test == true) {
-                    if (roll_test == true) {
-                        if (room_test == true) {
-                            //pass();
-                            System.out.println("all valid");
-                            new DataEntryTask(getBaseContext(), work_id, fin_roll, fin_room, sweep_mop, rates,date,currenttime).execute();
-
-                        } else
-                            roomno.setError("Invalid roomno");
-                    } else
+                if (worker_id_test == true && roll_test == true && room_test == true) {
+                    System.out.println("all valid");
+                    new DataEntryTask(getBaseContext(), work_id, fin_roll, fin_room, sweep_mop, rates, date, currenttime).execute();
+                } else {
+                    if (worker_id_test == false)
+                        workerid.setError("Invalid worker id");
+                    if (roll_test == false)
                         rollno.setError("Invalid rollno");
-                } else
-                    workerid.setError("Invalid worker id");
+                    if (room_test == false)
+                        roomno.setError("Invalid roomno");
+
+                }
+
 
                 //ends
 //                System.out.println("entry submitted");

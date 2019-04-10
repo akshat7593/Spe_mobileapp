@@ -11,7 +11,8 @@
         android:id="@+id/workerid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/workerid"/>
+        android:hint="@string/workerid"
+        android:singleLine="true"/>
 
 
     <EditText
@@ -19,14 +20,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/rollno"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="24dp"
+        android:singleLine="true"/>
 
     <EditText
         android:id="@+id/Student_room"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/roomno"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="24dp"
+        android:singleLine="true"/>
 
 //ELK tools
 
