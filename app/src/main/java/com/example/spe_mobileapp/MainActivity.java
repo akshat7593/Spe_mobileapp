@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     EditText email, rollno, password, repassword, roomno;
     Button register;
     String emailPattern = "[a-zA-Z0-9._-]+@iiitb.org";
-    String password_pattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+    String password_pattern = "^.{6,}$";
     String roll_pattern = "^(MS|MT|IMT|PHD|DT)+20+[0-9]{5}$";
     String room_pattern = "^[1-7][0-9][0-9]$";
 
@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
 //            }});
         repassword.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
+                if(match_repass(password.getText().toString(), repassword.getText().toString())==false){
+                    repassword.setError("Password Doesn't Matches");
+                }
                 register.performClick();
                 return true;
             }
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                     if(room_test==false)
                         roomno.setError("Incorrect Room Number");
                     if(pass_test==false)
-                        password.setError("Not Valid Password");
+                        password.setError("Minimum password length is 6");
                     if(repass_test==false)
                         repassword.setError("Password Doesn't Matches");
 

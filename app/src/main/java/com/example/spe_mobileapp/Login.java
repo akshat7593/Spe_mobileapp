@@ -24,9 +24,9 @@ public class Login extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        SharedPreferences mPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        SharedPreferences.Editor mEdit = mPreferences.edit();
-        System.out.println("test11" + mPreferences);
+        //SharedPreferences mPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        //SharedPreferences.Editor mEdit = mPreferences.edit();
+        //System.out.println("test11" + mPreferences);
         login_roll = (EditText) findViewById(R.id.login_roll);
         login_pass = (EditText) findViewById(R.id.login_pass);
         login_btn = (Button) findViewById(R.id.data_login);
