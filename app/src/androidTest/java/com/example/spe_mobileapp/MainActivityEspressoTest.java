@@ -33,7 +33,7 @@ public class MainActivityEspressoTest {
 
         onView(withId(R.id.login_pass))
                 .perform(typeText("100100100"), closeSoftKeyboard());
-        onView(withId(R.id.data_login)).perform(click());
+        //onView(withId(R.id.data_login)).perform(click());
 
         //onView(withId(R.id.data_login)).check()
 
