@@ -42,15 +42,12 @@ public class Login extends Activity {
 
 
         //end
-        login_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        login_btn.setOnClickListener(v -> {
 
-                System.out.println(login_roll.getText().toString());
+            System.out.println(login_roll.getText().toString());
 
-                //Network Test
-                new NetworkTask(getBaseContext(), login_roll.getText().toString(), login_pass.getText().toString()).execute();
-            }
+            //Network Test
+            new NetworkTask(getBaseContext(), login_roll.getText().toString(), login_pass.getText().toString()).execute();
         });
 
 
