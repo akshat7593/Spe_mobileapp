@@ -51,7 +51,7 @@ public class DataEntryTask extends AsyncTask<Void, Void, Void> {
             RequestBody body = RequestBody.create(JSON, mPostBody);
             okhttp3.Request mRequest = new okhttp3.Request.Builder()
                     .post(body)
-                    .url("http://172.16.132.137:4000/cleaning")
+                    .url("http://172.16.144.211:4000/cleaning")
                     .build();
 
             mResponse = mClient.newCall(mRequest).execute();

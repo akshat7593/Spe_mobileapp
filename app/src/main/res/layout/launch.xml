@@ -16,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Click here to login"
+        android:text="LOGIN"
+        android:textStyle="bold"
         android:textColor="#0D47A1"
         android:id="@+id/login_link"
         />
@@ -24,7 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Click here to Signup"
+        android:text="SIGNUP"
+        android:textStyle="bold"
         android:textColor="#0D47A1"
         android:id="@+id/signup_link"
         />
