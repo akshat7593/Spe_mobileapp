@@ -103,10 +103,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Boolean match_email(String email) {
-        if (email.matches(emailPattern))
+        if (email.matches("[a-zA-Z0-9._-]+@iiitb.org"))
             return true;
         else
             return false;
+
     }
 
     public Boolean match_pass(String pass) {
